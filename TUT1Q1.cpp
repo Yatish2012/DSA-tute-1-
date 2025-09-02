@@ -1,84 +1,44 @@
-#include <stdio.h>
-
-#define MAX 100
-
-int arr[MAX], n = 0;
-
-void create() {
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    printf("Enter elements: ");
-    for (int i = 0; i < n; i++)
-        scanf("%d", &arr[i]);
-}
-
-void display() {
-    printf("Array: ");
-    for (int i = 0; i < n; i++)
-        printf("%d ", arr[i]);
-    printf("\n");
-}
-
-void insert() {
-    int pos, val;
-    printf("Enter position to insert (0 to %d): ", n);
-    scanf("%d", &pos);
-    if (pos < 0 || pos > n) { 
-        printf("Invalid position.\n"); 
-        return; 
+ #include <iostream>
+ using namespace std;
+ int main() {
+    int arr, size = 0, choice, value, pos;
+    while (true) {
+        cout << "\n1.CREATE 2.DISPLAY 3.INSERT 4.DELETE 5.LINEAR SEARCH 6.EXIT\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+        if (choice == 1) {
+            cout << "Enter size: ";
+            cin >> size;
+            for (int i = 0; i < size; i++) cin >> arr[i];
+        } else if (choice == 2) {
+            for (int i = 0; i < size; i++) cout << arr[i] << " ";
+        } else if (choice == 3) {
+            cout << "Value and position: ";
+            cin >> value >> pos;
+            for (int i = size; i > pos; i--) arr[i] = arr[i-1];
+            arr[pos] = value;
+            size++;
+        } else if (choice == 4) {
+            cout << "Position: ";
+            cin >> pos;
+            for (int i = pos; i < size - 1; i++) arr[i] = arr[i+1];
+            size--;
+        } else if (choice == 5) {
+            cout << "Search value: ";
+            cin >> value;
+            int found = 0;
+            for (int i = 0; i < size; i++)
+                if (arr[i] == value) {
+                    found = 1;
+                    cout << "Found at " << i << endl;
+                }
+            if (!found) cout << "Not found\n";
+        } else if (choice == 6) break;
     }
-    printf("Enter value: ");
-    scanf("%d", &val);
-    for (int i = n; i > pos; i--) 
-        arr[i] = arr[i - 1];
-    arr[pos] = val;
-    n++;
-}
+ do in cpp
+ 1
+ 1. Array Operations Menu Driven)
+return 0;
+ }
 
-void delete() {
-    int pos;
-    printf("Enter position to delete (0 to %d): ", n - 1);
-    scanf("%d", &pos);
-    if (pos < 0 || pos >= n) { 
-        printf("Invalid position.\n"); 
-        return; 
-    }
-    for (int i = pos; i < n - 1; i++) 
-        arr[i] = arr[i + 1];
-    n--;
-}
-
-void linear_search() {
-    int val, found = 0;
-    printf("Enter value to search: ");
-    scanf("%d", &val);
-    for (int i = 0; i < n; i++) {
-        if (arr[i] == val) {
-            printf("Found at position %d\n", i);
-            found = 1;
-            break;
-        }
-    }
-    if (!found) 
-        printf("Not Found\n");
-}
-
-int main() {
-    int ch;
-    do {
-        printf("\nMENU:\n1.CREATE\n2.DISPLAY\n3.INSERT\n4.DELETE\n5.LINEAR SEARCH\n6.EXIT\n");
-        printf("Enter choice: ");
-        scanf("%d", &ch);
-        switch (ch) {
-            case 1: create(); break;
-            case 2: display(); break;
-            case 3: insert(); break;
-            case 4: delete(); break;
-            case 5: linear_search(); break;
-            case 6: printf("Exiting.\n"); break;
-            default: printf("Invalid choice\n");
-        }
-    } while (ch != 6);
-    return 0;
-}
 
