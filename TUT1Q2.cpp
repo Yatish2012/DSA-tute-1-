@@ -1,42 +1,20 @@
-#include <stdio.h>
-
-
-void removeDuplicates(int arr[], int *size) {
-    for (int i = 0; i < *size; i++) {
-        for (int j = i + 1; j < *size; ) {
-            if (arr[i] == arr[j]) {
-               
-                for (int k = j; k < *size - 1; k++) {
-                    arr[k] = arr[k + 1];
-                }
-                (*size)--;
-            } else {
-                j++;
-            }
-        }
-    }
-}
-
-int main() {
-    int arr[100], size;
-
-    printf("\nHow many elements? ");
-    scanf("%d", &size);
-
-    printf("Enter your %d numbers:\n", size);
-    for (int i = 0; i < size; i++) {
-        printf("Element %d: ", i + 1);
-        scanf("%d", &arr[i]);
-    }
-
-    removeDuplicates(arr, &size);
-
-    printf("\nArray after removing duplicates: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-
-    return 0;
-}
+ #include <iostream>
+ using namespace std;
+ int main() {
+ int a, n;
+ cin >> n;
+ for (int i = 0; i < n; i++) cin >> a[i];
+ for (int i = 0; i < n; i++) {
+ for (int j = i + 1; j < n;) {
+ if (a[i] == a[j]) {
+ for (int k = j; k < n - 1; k++) a[k] = a[k + 1];
+ n--;
+ } else {
+ j++;
+ }
+ }
+ }
+ for (int i = 0; i < n; i++) cout << a[i] << " ";
+ return 0;
+ }
 
